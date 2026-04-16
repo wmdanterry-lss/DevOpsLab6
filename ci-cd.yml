@@ -1,0 +1,42 @@
+name: CI/CD Pipeline Demo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build Stage
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Simulate Build Step
+        run: echo "Building the HTML project..."
+
+  test:
+    runs-on: ubuntu-latest
+    name: Test Stage
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Simulate HTML Validation
+        run: echo "Running HTML/CSS/JS validation..."
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy Stage
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Simulate Deployment
+        run: echo "Deploying the website (simulated for now)..."
